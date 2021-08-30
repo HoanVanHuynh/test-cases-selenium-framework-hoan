@@ -41,5 +41,4 @@ public class LoginPage extends BasePage{
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
     }
-
 }

@@ -26,5 +26,4 @@ public class DataHelper {
     public static int getRandomNumber(int min, int max) {
         return faker.number().numberBetween(min, max);
     }
-
 }

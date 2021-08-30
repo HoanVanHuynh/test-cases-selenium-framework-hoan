@@ -47,5 +47,4 @@ public class Ticket {
     public void setTicketAmount(String ticketAmount) {
         this.ticketAmount = ticketAmount;
     }
-
 }
