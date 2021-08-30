@@ -23,7 +23,6 @@ public class Wait {
     public static void untilElementIsSelected(By locator, int seconds) {
         getWait(seconds).until(ExpectedConditions.elementToBeSelected(locator));
     }
-
 }
 
 

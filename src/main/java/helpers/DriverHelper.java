@@ -38,5 +38,4 @@ public class DriverHelper {
     public static void clickOKButtonOfAlert() {
         driver.switchTo().alert().accept();
     }
-
 }
