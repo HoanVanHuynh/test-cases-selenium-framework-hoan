@@ -16,7 +16,6 @@ public class BasePage {
     }
 
     // Methods
-
     public void clickLoginTab() {
         this.getTabLogin().click();
     }
