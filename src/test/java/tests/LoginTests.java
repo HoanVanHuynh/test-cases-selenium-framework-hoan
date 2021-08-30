@@ -1,6 +1,7 @@
 package tests;
 
 import common.Constants;
+import helpers.DriverHelper;
 import helpers.LogHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,5 +25,28 @@ public class LoginTests extends BaseTest {
 
         LogHelper.info("Verify that welcome user message displays correctly after logging into Railway successfully");
         Assert.assertEquals(actualMessage, expectedMessage, "Welcome user message is not displayed as expected");
+    }
+
+    @Test(description = "User can not login with blank username textbox")
+    public void tc02_CanNotLoginWithBlankUsername() {
+        LogHelper.info("Click on Login tab");
+        loginPage.clickLoginTab();
+
+        LogHelper.info("Does not type any words into username textbox but enter valid information into password textbox and click on login button");
+        loginPage.login("", Constants.PASSWORD);
+
+        LogHelper.info("Get error message at top of login form");
+        String actualMessage = loginPage.getErrorMessageAtTop();
+        String expectedMessage = "There was a problem with your login and/or errors exist in your form.";
+
+        LogHelper.info("Verify that error message at top of login form appears correctly after logging with bank username textbox");
+        Assert.assertEquals(actualMessage, expectedMessage, "Error message at top of login form does not appear correctly as design");
+
+        LogHelper.info("Get current page title");
+        String actualTitle = DriverHelper.getTitle();
+        String expectedTitle = "Safe Railway - Login";
+
+        LogHelper.info("Verify that if user can not login, user is still at the login page");
+        Assert.assertEquals(actualTitle, expectedTitle, "Title of login page should not be changed");
     }
 }
