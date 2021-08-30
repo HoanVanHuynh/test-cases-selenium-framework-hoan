@@ -4,7 +4,6 @@ import helpers.DriverHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-
 public class BasePage {
 
     // Locators

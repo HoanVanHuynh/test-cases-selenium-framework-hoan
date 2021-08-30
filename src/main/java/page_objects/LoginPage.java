@@ -13,7 +13,6 @@ public class LoginPage extends BasePage{
     private final By btnLogin = By.cssSelector("input[value='Login']");
     private final By lblWelcomeMessage = By.cssSelector("div[class='account'] > strong");
 
-
     // Elements
     private WebElement getTxtUsername() {
         return DriverHelper.getDriver().findElement(txtUsername);
@@ -30,7 +29,6 @@ public class LoginPage extends BasePage{
     private WebElement getLblWelcomeMessage() {
         return DriverHelper.getDriver().findElement(lblWelcomeMessage);
     }
-
 
     // Methods
     public void login(String user, String password) {
