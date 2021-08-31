@@ -24,5 +24,3 @@ public class Wait {
         getWait(seconds).until(ExpectedConditions.elementToBeSelected(locator));
     }
 }
-
-
