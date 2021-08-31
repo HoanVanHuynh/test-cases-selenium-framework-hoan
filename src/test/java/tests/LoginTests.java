@@ -56,8 +56,7 @@ public class LoginTests extends BaseTest {
         LogHelper.info("Click on Login tab");
         loginPage.clickLoginTab();
 
-        LogHelper.info("Get invalid random password with 5 characters");
-        String invalidPassword = DataHelper.getRandomPassword(5);
+        String invalidPassword = "12345";
 
         LogHelper.info("Enter valid Email and invalid Password and click on Login button");
         loginPage.login(Constants.USERNAME, invalidPassword);
