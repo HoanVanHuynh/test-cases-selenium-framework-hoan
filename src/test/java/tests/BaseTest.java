@@ -18,4 +18,3 @@ public class BaseTest {
         DriverHelper.quit();
     }
 }
-
