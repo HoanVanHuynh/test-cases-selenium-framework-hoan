@@ -73,6 +73,6 @@ public class LoginTests extends BaseTest {
         String expectedTitle = "Safe Railway - Login";
 
         LogHelper.info("Verify that user is still at the login page");
-        Assert.assertEquals(actualTitle, expectedTitle, "Title of login page should not be changed");
+        Assert.assertEquals(actualTitle, expectedTitle, "Title of login page is displayed incorrectly as expected");
     }
 }
