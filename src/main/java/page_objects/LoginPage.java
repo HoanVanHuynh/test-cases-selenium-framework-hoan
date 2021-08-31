@@ -60,9 +60,3 @@ public class LoginPage extends BasePage {
         return this.getLblTopicContentAtTop().getText();
     }
 }
-
-
-
-
-
-
