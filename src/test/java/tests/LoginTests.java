@@ -67,5 +67,12 @@ public class LoginTests extends BaseTest {
 
         LogHelper.info("Verify that error message at top of login form appears correctly after logging with invalid password");
         Assert.assertEquals(actualMessage, expectedMessage, "Error message at top of login form does not appear correctly as design");
+
+        LogHelper.info("Get current page title");
+        String actualTitle = DriverHelper.getTitle();
+        String expectedTitle = "Safe Railway - Login";
+
+        LogHelper.info("Verify that user is still at the login page");
+        Assert.assertEquals(actualTitle, expectedTitle, "Title of login page should not be changed");
     }
 }
