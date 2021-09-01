@@ -41,9 +41,9 @@ public class LoginPage extends BasePage {
     }
 
     // Methods
-    public void login(String user, String password) {
+    public void login(String username, String password) {
         ElementHelper.scrollTo(this.getTxtUsername());
-        this.getTxtUsername().sendKeys(user);
+        this.getTxtUsername().sendKeys(username);
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
     }
@@ -58,5 +58,11 @@ public class LoginPage extends BasePage {
 
     public String getTopicContentAtTop() {
         return this.getLblTopicContentAtTop().getText();
+    }
+
+    public void loginMultipleTimes(int numberOfTimes, String username, String password) {
+        for (int i = 0; i < numberOfTimes; i++) {
+            this.login(username, password);
+        }
     }
 }
