@@ -60,7 +60,7 @@ public class LoginPage extends BasePage {
         return this.getLblTopicContentAtTop().getText();
     }
 
-    public void loopLogin(int numberOfTimes, String username, String password) {
+    public void loginMultipleTimes(int numberOfTimes, String username, String password) {
         for (int i = 0; i < numberOfTimes; i++) {
             this.login(username, password);
         }
