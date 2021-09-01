@@ -101,9 +101,7 @@ public class LoginTests extends BaseTest {
         String invalidPassword = "11122233345";
 
         LogHelper.info("Log in 4 times with valid username but invalid password");
-        for (int i = 0; i < 4; i++) {
-            loginPage.login(Constants.USERNAME, invalidPassword);
-        }
+        loginPage.loopLogin(4, Constants.USERNAME, invalidPassword);
 
         LogHelper.info("Get error message after logging in 4 times with invalid password");
         String actualMessage = loginPage.getErrorMessageAtTop();
