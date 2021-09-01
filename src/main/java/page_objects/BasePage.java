@@ -27,4 +27,24 @@ public class BasePage {
     public void clickBookTicketTab() {
         this.getTabBookTicket().click();
     }
+    private final By tabLogout = By.cssSelector("a[href$='Logout']");
+    private final By tabContact = By.cssSelector("a[href*='Contact']");
+    private WebElement getTabLogout() {
+        return DriverHelper.getDriver().findElement(tabLogout);
+    }
+    private WebElement getTabContact() {
+        return DriverHelper.getDriver().findElement(tabContact);
+    }
+    public void clickLogoutTab() {
+        this.getTabLogout().click();
+    }
+    public void clickContactTab() {
+        this.getTabContact().click();
+    }
+    public Boolean isLogoutTabDisplayed() {
+        return getTabLogout().isDisplayed();
+    }
+    public Boolean isLoginTabDisplayed(){
+        return getTabLogin().isDisplayed();
+    }
 }
