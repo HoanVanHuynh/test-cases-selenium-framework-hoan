@@ -1,6 +1,7 @@
 package page_objects;
 
 import helpers.DriverHelper;
+import helpers.ElementHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -9,6 +10,8 @@ public class BasePage {
     // Locators
     private final By tabLogin = By.cssSelector("a[href$='Login.cshtml']");
     private final By tabBookTicket = By.cssSelector("a[href$='BookTicketPage.cshtml']");
+    private final By tabLogout = By.cssSelector("a[href$='Logout']");
+    private final By tabContact = By.cssSelector("a[href*='Contact']");
 
     // Elements
     private WebElement getTabLogin() {
@@ -19,6 +22,14 @@ public class BasePage {
         return DriverHelper.getDriver().findElement(tabBookTicket);
     }
 
+    private WebElement getTabLogout() {
+        return DriverHelper.getDriver().findElement(tabLogout);
+    }
+
+    private WebElement getTabContact() {
+        return DriverHelper.getDriver().findElement(tabContact);
+    }
+
     // Methods
     public void clickLoginTab() {
         this.getTabLogin().click();
@@ -27,24 +38,20 @@ public class BasePage {
     public void clickBookTicketTab() {
         this.getTabBookTicket().click();
     }
-    private final By tabLogout = By.cssSelector("a[href$='Logout']");
-    private final By tabContact = By.cssSelector("a[href*='Contact']");
-    private WebElement getTabLogout() {
-        return DriverHelper.getDriver().findElement(tabLogout);
-    }
-    private WebElement getTabContact() {
-        return DriverHelper.getDriver().findElement(tabContact);
-    }
+
     public void clickLogoutTab() {
         this.getTabLogout().click();
     }
+
     public void clickContactTab() {
         this.getTabContact().click();
     }
-    public Boolean isLogoutTabDisplayed() {
-        return getTabLogout().isDisplayed();
+
+    public boolean isLogoutTabDisplayed() {
+        return ElementHelper.isElementDisplayed(this.getTabLogout());
     }
-    public Boolean isLoginTabDisplayed(){
-        return getTabLogin().isDisplayed();
+
+    public boolean isLoginTabDisplayed() {
+        return ElementHelper.isElementDisplayed(this.getTabLogin());
     }
 }

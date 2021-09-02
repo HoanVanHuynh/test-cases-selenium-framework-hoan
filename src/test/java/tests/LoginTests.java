@@ -109,7 +109,7 @@ public class LoginTests extends BaseTest {
 
         LogHelper.info("Get error message after logging in 4 times with invalid password");
         String actualMessage = loginPage.getErrorMessageAtTop();
-        String expectedMessage = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        String expectedMessage = "Invalid username or password. Please try again.";
 
         LogHelper.info("Verify that error message displays correctly after logging in 4 times with invalid password");
         Assert.assertEquals(actualMessage, expectedMessage, "Error message is displayed incorrectly as expected");
@@ -121,7 +121,7 @@ public class LoginTests extends BaseTest {
         loginPage.login(Constants.USERNAME, Constants.PASSWORD);
 
         LogHelper.info("Get value of boolean function to know Logout tab is displayed");
-        Boolean logoutTabAppearance = loginPage.isLogoutTabDisplayed();
+        boolean logoutTabAppearance = loginPage.isLogoutTabDisplayed();
 
         LogHelper.info("Click on Contact tab");
         contactPage.clickContactTab();
@@ -130,7 +130,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogoutTab();
 
         LogHelper.info("Get value of boolean function to know Login tab is displayed");
-        Boolean loginTabAppearance = loginPage.isLoginTabDisplayed();
+        boolean loginTabAppearance = loginPage.isLoginTabDisplayed();
 
         LogHelper.info("Get welcome content at the top of Home page in the middle");
         String actualContent = homePage.getWelcomeContentAtTop();

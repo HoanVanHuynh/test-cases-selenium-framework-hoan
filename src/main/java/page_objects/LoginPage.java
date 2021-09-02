@@ -43,7 +43,9 @@ public class LoginPage extends BasePage {
     // Methods
     public void login(String username, String password) {
         ElementHelper.scrollTo(this.getTxtUsername());
+        this.getTxtUsername().clear();
         this.getTxtUsername().sendKeys(username);
+        this.getTxtPassword().clear();
         this.getTxtPassword().sendKeys(password);
         this.getBtnLogin().click();
     }
