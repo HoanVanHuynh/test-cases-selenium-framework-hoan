@@ -46,13 +46,9 @@ public class RegisterPage extends BasePage {
     // Methods
     public void register(Account account) {
         ElementHelper.scrollTo(this.getTxtEmail());
-        this.getTxtEmail().clear();
         this.getTxtEmail().sendKeys(account.getEmail());
-        this.getTxtPassword().clear();
         this.getTxtPassword().sendKeys(account.getPassword());
-        this.getTxtConfirmPassword().clear();
         this.getTxtConfirmPassword().sendKeys(account.getConfirmPassword());
-        this.getTxtPid().clear();
         this.getTxtPid().sendKeys(account.getPid());
         this.getBtnRegister().click();
     }
