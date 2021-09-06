@@ -13,6 +13,7 @@ public class BasePage {
     private final By tabLogout = By.cssSelector("a[href$='Logout']");
     private final By tabContact = By.cssSelector("a[href*='Contact']");
     private final By tabRegister = By.cssSelector("li > a[href$='Register.cshtml']");
+    private final By tabChangePassword = By.cssSelector(" a[href*='ChangePassword']");
 
     // Elements
     private WebElement getTabLogin() {
@@ -33,6 +34,10 @@ public class BasePage {
 
     private WebElement getTabRegister() {
         return DriverHelper.getDriver().findElement(tabRegister);
+    }
+
+    private WebElement getTabChangePassword() {
+        return DriverHelper.getDriver().findElement(tabChangePassword);
     }
 
     // Methods
@@ -62,5 +67,9 @@ public class BasePage {
 
     public void clickRegisterTab() {
         this.getTabRegister().click();
+    }
+
+    public void clickChangePasswordTab() {
+        this.getTabChangePassword().click();
     }
 }

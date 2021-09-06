@@ -6,12 +6,16 @@ import helpers.LogHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import page_objects.ChangePasswordPage;
+import page_objects.LoginPage;
 import page_objects.RegisterPage;
 
 public class RegisterTests extends BaseTest {
 
     private Account account = new Account();
     private RegisterPage registerPage = new RegisterPage();
+    private ChangePasswordPage changePasswordPage = new ChangePasswordPage();
+    private LoginPage loginPage = new LoginPage();
     private String email = DataHelper.getRandomEmail();
     private String password = DataHelper.getRandomPassword(10);
     private String pid = DataHelper.getRandomDigits(10);
@@ -39,5 +43,43 @@ public class RegisterTests extends BaseTest {
 
         LogHelper.info("Verify that new account is created and success message appears properly");
         Assert.assertEquals(actualResult, expectedResult, "Register success message displays incorrectly");
+    }
+
+    @Test(description = "User can not change password when New Password and Confirm Password are different")
+    public void tc09_UserCanNotChangePassword() {
+        LogHelper.info("Click on Register tab");
+        registerPage.clickRegisterTab();
+
+        LogHelper.info("Register an account");
+        registerPage.register(account);
+
+        LogHelper.info("Click on Login tab");
+        loginPage.clickLoginTab();
+
+        LogHelper.info("Log into Railway");
+        loginPage.login(email, password);
+
+        LogHelper.info("Click on Change Password tab");
+        changePasswordPage.clickChangePasswordTab();
+
+        String newPassword = "a123:\"/{}!@$\\";
+        String confirmPassword = "b456:\"/{}!@$\\";
+
+        LogHelper.info("Change password with new password and confirm password are different");
+        changePasswordPage.changePassword(password, newPassword, confirmPassword);
+
+        LogHelper.info("Get error message at the top of change password form ");
+        String actualError = changePasswordPage.getChangePasswordErrorMessage();
+        String expectedError = "Password change failed. Please correct the errors and try again.";
+
+        LogHelper.info("Get error message next to confirm password field");
+        String actualConfirmPasswordError = changePasswordPage.getConfirmPasswordErrorMessage();
+        String expectedConfirmPasswordError = "The password confirmation does not match the new password.";
+
+        LogHelper.info("Verify that user can not change password");
+        Assert.assertEquals(actualError, expectedError, "Change password error message is displayed incorrectly");
+
+        LogHelper.info("Verify that error message displays correctly when using new password and confirm password are different");
+        Assert.assertEquals(actualConfirmPasswordError, expectedConfirmPasswordError, "Confirm password error message is displayed incorrectly");
     }
 }
