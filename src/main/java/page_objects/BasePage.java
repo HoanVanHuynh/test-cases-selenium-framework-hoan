@@ -12,6 +12,7 @@ public class BasePage {
     private final By tabBookTicket = By.cssSelector("a[href$='BookTicketPage.cshtml']");
     private final By tabLogout = By.cssSelector("a[href$='Logout']");
     private final By tabContact = By.cssSelector("a[href*='Contact']");
+    private final By tabRegister = By.cssSelector("li > a[href$='Register.cshtml']");
 
     // Elements
     private WebElement getTabLogin() {
@@ -28,6 +29,10 @@ public class BasePage {
 
     private WebElement getTabContact() {
         return DriverHelper.getDriver().findElement(tabContact);
+    }
+
+    private WebElement getTabRegister() {
+        return DriverHelper.getDriver().findElement(tabRegister);
     }
 
     // Methods
@@ -53,5 +58,9 @@ public class BasePage {
 
     public boolean isLoginTabDisplayed() {
         return ElementHelper.isElementDisplayed(this.getTabLogin());
+    }
+
+    public void clickRegisterTab() {
+        this.getTabRegister().click();
     }
 }
