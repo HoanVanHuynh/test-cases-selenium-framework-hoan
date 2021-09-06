@@ -12,8 +12,8 @@ public class ChangePasswordPage extends BasePage {
     private final By txtNewPassword = By.id("newPassword");
     private final By txtConfirmPassword = By.id("confirmPassword");
     private final By btnChangePassword = By.cssSelector("input[value='Change Password']");
-    private final By lblChangePasswordErrorMessage = By.cssSelector("p[class='message error']");
-    private final By lblConfirmPasswordErrorMessage = By.cssSelector("input#confirmPassword + label.validation-error");
+    private final By lblChangePasswordErrorMessageAtTop = By.cssSelector("p[class='message error']");
+    private final By lblConfirmPasswordErrorMessageNextTo = By.cssSelector("input#confirmPassword + label.validation-error");
 
     // Elements
     private WebElement getTxtCurrentPassword() {
@@ -32,12 +32,12 @@ public class ChangePasswordPage extends BasePage {
         return DriverHelper.getDriver().findElement(btnChangePassword);
     }
 
-    private WebElement getLblChangePasswordErrorMessage() {
-        return DriverHelper.getDriver().findElement(lblChangePasswordErrorMessage);
+    private WebElement getLblChangePasswordErrorMessageAtTop() {
+        return DriverHelper.getDriver().findElement(lblChangePasswordErrorMessageAtTop);
     }
 
-    private WebElement getLblConfirmPasswordErrorMessage() {
-        return DriverHelper.getDriver().findElement(lblConfirmPasswordErrorMessage);
+    private WebElement getLblConfirmPasswordErrorMessageNextTo() {
+        return DriverHelper.getDriver().findElement(lblConfirmPasswordErrorMessageNextTo);
     }
 
     // Methods
@@ -49,11 +49,11 @@ public class ChangePasswordPage extends BasePage {
         this.getBtnChangePassword().click();
     }
 
-    public String getChangePasswordErrorMessage() {
-        return this.getLblChangePasswordErrorMessage().getText();
+    public String getPasswordErrorMessageAtTop() {
+        return this.getLblChangePasswordErrorMessageAtTop().getText();
     }
 
-    public String getConfirmPasswordErrorMessage() {
-        return this.getLblConfirmPasswordErrorMessage().getText();
+    public String getConfirmPasswordErrorMessageNextTo() {
+        return this.getLblConfirmPasswordErrorMessageNextTo().getText();
     }
 }
