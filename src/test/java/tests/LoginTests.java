@@ -7,12 +7,16 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page_objects.BookTicketPage;
+import page_objects.ContactPage;
+import page_objects.HomePage;
 import page_objects.LoginPage;
 
 public class LoginTests extends BaseTest {
 
     private LoginPage loginPage = new LoginPage();
     private BookTicketPage bookTicketPage = new BookTicketPage();
+    private ContactPage contactPage = new ContactPage();
+    private HomePage homePage = new HomePage();
 
     @BeforeMethod(onlyForGroups = {"g1"})
     public void precondition() {
@@ -105,9 +109,40 @@ public class LoginTests extends BaseTest {
 
         LogHelper.info("Get error message after logging in 4 times with invalid password");
         String actualMessage = loginPage.getErrorMessageAtTop();
-        String expectedMessage = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        String expectedMessage = "Invalid username or password. Please try again.";
 
         LogHelper.info("Verify that error message displays correctly after logging in 4 times with invalid password");
         Assert.assertEquals(actualMessage, expectedMessage, "Error message is displayed incorrectly as expected");
+    }
+
+    @Test(description = "User is redirected to Home page after logging out", groups = {"g1"})
+    public void tc06_UserIsRedirectedToHomePage() {
+        LogHelper.info("Login with valid account");
+        loginPage.login(Constants.USERNAME, Constants.PASSWORD);
+
+        LogHelper.info("Get value of boolean function to know Logout tab is displayed");
+        boolean logoutTabAppearance = loginPage.isLogoutTabDisplayed();
+
+        LogHelper.info("Click on Contact tab");
+        contactPage.clickContactTab();
+
+        LogHelper.info("Click on Logout tab");
+        loginPage.clickLogoutTab();
+
+        LogHelper.info("Get value of boolean function to know Login tab is displayed");
+        boolean loginTabAppearance = loginPage.isLoginTabDisplayed();
+
+        LogHelper.info("Get welcome content at the top of Home page in the middle");
+        String actualContent = homePage.getWelcomeContentAtTop();
+        String expectedContent = "Welcome to Safe Railway";
+
+        LogHelper.info("Verify that Logout tab is displayed after logging in successfully.");
+        Assert.assertTrue(logoutTabAppearance, "Logout tab is not displayed as expected");
+
+        LogHelper.info("Verify that Logout tab is disappeared and Login tab is displayed at the same time.");
+        Assert.assertTrue(loginTabAppearance, "Login tab is not displayed as expected");
+
+        LogHelper.info("Verify that Home page displays");
+        Assert.assertEquals(actualContent, expectedContent, "welcome content is displayed incorrectly");
     }
 }
