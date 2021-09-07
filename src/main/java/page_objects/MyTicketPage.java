@@ -19,13 +19,7 @@ public class MyTicketPage extends BasePage {
         return DriverHelper.getDriver().findElement(cancelButton);
     }
 
-    // Methods
-    public void cancelTicket(String departStation, String arriveStation, String departDate, String ticketAmount) {
-        ElementHelper.scrollTo(this.getCancelButton(departStation, arriveStation, departDate, ticketAmount));
-        this.getCancelButton(departStation, arriveStation, departDate, ticketAmount).click();
-    }
-
-    public WebElement getCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
+    private WebElement getLblCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
         int remainingTicketAmount = maximumTicketAmount - ticketAmount;
         String dynamicCancelTicketNote;
         if (ticketAmount > 1) {
@@ -35,5 +29,15 @@ public class MyTicketPage extends BasePage {
         }
         By note = By.xpath(dynamicCancelTicketNote);
         return DriverHelper.getDriver().findElement(note);
+    }
+
+    // Methods
+    public void cancelTicket(String departStation, String arriveStation, String departDate, String ticketAmount) {
+        ElementHelper.scrollTo(this.getCancelButton(departStation, arriveStation, departDate, ticketAmount));
+        this.getCancelButton(departStation, arriveStation, departDate, ticketAmount).click();
+    }
+
+    public String getCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
+        return this.getLblCancelTicketNote(ticketAmount, maximumTicketAmount).getText();
     }
 }

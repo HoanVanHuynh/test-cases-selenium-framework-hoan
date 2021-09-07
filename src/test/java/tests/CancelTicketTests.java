@@ -76,14 +76,17 @@ public class CancelTicketTests extends BaseTest {
         LogHelper.info("Verify that book ticket success message displays correctly after booking successfully");
         Assert.assertEquals(actualBookTicketSuccessMsg, expectedBookTicketSuccessMsg, "Message does not display correctly");
 
-        LogHelper.info("Verify that ticket formation displays correctly after booking successfully such as depart station, arrive station, seat type, depart date and amount");
-        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(ticket));
+        LogHelper.info("Verify that ticket formation displays correctly after booking successfully such as depart station, arrive station, depart date and ticket amount");
+        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(departDate));
+        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(departStation));
+        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(arriveStation));
+        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(ticketAmount));
 
         LogHelper.info("Click on My ticket tab");
         myTicketPage.clickMyTicketTab();
 
         LogHelper.info("Get current number of booked tickets before cancelling any ticket");
-        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNote(2, 10).getText();
+        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNote(2, 10);
         String expectedBeforeCancellingResult = "You currently book 2 tickets, you can book 8 more.";
 
         LogHelper.info("Verify that number of tickets displays correctly before cancelling any ticket");
@@ -96,7 +99,7 @@ public class CancelTicketTests extends BaseTest {
         DriverHelper.acceptAlert();
 
         LogHelper.info("Get number of remaining tickets after cancelling any ticket");
-        String actualAfterCancellingResult = myTicketPage.getCancelTicketNote(0, 10).getText();
+        String actualAfterCancellingResult = myTicketPage.getCancelTicketNote(0, 10);
         String expectedAfterCancellingResult = "You currently book 0 ticket, you can book 10 more.";
 
         LogHelper.info("Verify that the canceled ticket is disappeared.");

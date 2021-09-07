@@ -28,7 +28,7 @@ public class BookTicketPage extends BasePage {
         return DriverHelper.getDriver().findElement(lblBookTicketFormTitle);
     }
 
-    private WebElement getBookedTicketTable(String option) {
+    private WebElement getLblBookedTicketTable(String option) {
         String bookedTicketTable = String.format(dynamicBookedTicketTable, option);
         By table = By.xpath(bookedTicketTable);
         return DriverHelper.getDriver().findElement(table);
@@ -103,11 +103,8 @@ public class BookTicketPage extends BasePage {
         this.getBtnBookTicket().click();
     }
 
-    public boolean isTheSameTicketInformationDisplayed(Ticket ticket) {
-        if (getBookedTicketTable(ticket.getDepartDate()).isDisplayed() && getBookedTicketTable(ticket.getDepartFrom()).isDisplayed() && getBookedTicketTable(ticket.getArriveAt()).isDisplayed()) {
-            return true;
-        }
-        return false;
+    public boolean isTheSameTicketInformationDisplayed(String option) {
+        return ElementHelper.isElementDisplayed(getLblBookedTicketTable(option));
     }
 
     public String getBookTicketMessage() {
