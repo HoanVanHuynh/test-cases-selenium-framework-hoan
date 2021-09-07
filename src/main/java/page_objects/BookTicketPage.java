@@ -103,30 +103,12 @@ public class BookTicketPage extends BasePage {
         this.getBtnBookTicket().click();
     }
 
-    public String getInformationBeforeBooking(Ticket ticket) {
-        return ticket.getDepartFrom() + " " + ticket.getArriveAt() + " " + ticket.getSeatType() + " " + ticket.getDepartDate() + " " + ticket.getTicketAmount() + " ";
-    }
-
-    public String getInformationAfterBooking() {
-        StringBuilder stringBuilder = new StringBuilder();
-        List<WebElement> row = getLblBookedTicketTable().findElements(By.tagName("td"));
-        for (int i = 0; i < row.size() - 1; i++) {
-            if (i == 4 || i == 5) {
-                continue;
-            }
-            stringBuilder.append(row.get(i).getText() + " ");
-        }
-        return stringBuilder.toString();
-    }
-
     public boolean isTheSameTicketInformationDisplayed(Ticket ticket) {
-        String beforeBook = this.getInformationBeforeBooking(ticket);
-        String afterBook = this.getInformationAfterBooking();
-        if (beforeBook.equals(afterBook)) {
+        List<WebElement> row = getLblBookedTicketTable().findElements(By.tagName("td"));
+        if (row.get(0).getText().equals(ticket.getDepartFrom()) && row.get(1).getText().equals(ticket.getArriveAt()) && row.get(2).getText().equals(ticket.getSeatType()) && row.get(3).getText().equals(ticket.getDepartDate()) && row.get(6).getText().equals(ticket.getTicketAmount())) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public String getBookTicketMessage() {
