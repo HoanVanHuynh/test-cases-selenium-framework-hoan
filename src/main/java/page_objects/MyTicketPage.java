@@ -25,22 +25,15 @@ public class MyTicketPage extends BasePage {
         this.getCancelButton(departStation, arriveStation, departDate, ticketAmount).click();
     }
 
-    public String getCancelTicketNoteWith0Or1Ticket(int ticketAmount, int maximumTicketAmount) {
+    public String getCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
         int remainingTicketAmount = maximumTicketAmount - ticketAmount;
-        String dynamicCancelTicketNote = String.format(dynamicNoteWith0Or1Ticket, ticketAmount, remainingTicketAmount);
+        String dynamicCancelTicketNote;
+        if (ticketAmount > 1) {
+            dynamicCancelTicketNote = String.format(dynamicNoteWithMoreThan1Ticket, ticketAmount, remainingTicketAmount);
+        } else {
+            dynamicCancelTicketNote = String.format(dynamicNoteWith0Or1Ticket, ticketAmount, remainingTicketAmount);
+        }
         By note = By.xpath(dynamicCancelTicketNote);
         return DriverHelper.getDriver().findElement(note).getText();
-    }
-
-    public String getCancelTicketNoteWithMoreThan1Ticket(int ticketAmount, int maximumTicketAmount) {
-        int remainingTicketAmount = maximumTicketAmount - ticketAmount;
-        String dynamicCancelTicketNote = String.format(dynamicNoteWithMoreThan1Ticket, ticketAmount, remainingTicketAmount);
-        By note = By.xpath(dynamicCancelTicketNote);
-        return DriverHelper.getDriver().findElement(note).getText();
-    }
-
-    public void clickOKButton() {
-        Wait.untilAlertIsPresent(10);
-        DriverHelper.getAlert().accept();
     }
 }

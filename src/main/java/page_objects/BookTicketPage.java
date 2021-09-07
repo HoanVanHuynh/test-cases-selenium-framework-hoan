@@ -1,5 +1,6 @@
 package page_objects;
 
+import common.Constants;
 import common.Ticket;
 import helpers.DriverHelper;
 import helpers.ElementHelper;
@@ -29,7 +30,7 @@ public class BookTicketPage extends BasePage {
     }
 
     private WebElement getLblBookTicketFormTitle() {
-        Wait.untilElementIsVisible(lblBookTicketFormTitle, 10);
+        Wait.untilElementIsVisible(lblBookTicketFormTitle, Constants.TIME_WAIT);
         return DriverHelper.getDriver().findElement(lblBookTicketFormTitle);
     }
 
@@ -68,27 +69,27 @@ public class BookTicketPage extends BasePage {
 
     // Methods
     public void selectDepartDate(String departDate) {
-        Wait.untilElementIsVisible(cmbDepartDate, 20);
+        Wait.untilElementIsVisible(cmbDepartDate, Constants.TIME_WAIT);
         this.getDropDownDepartDate().selectByVisibleText(departDate);
     }
 
     public void selectDepartStation(String departFrom) {
-        Wait.untilElementIsVisible(cmbDepartFrom, 20);
+        Wait.untilElementIsVisible(cmbDepartFrom, Constants.TIME_WAIT);
         this.getDropDownDepartFrom().selectByVisibleText(departFrom);
     }
 
     public void selectArriveStation(String arriveAt) {
-        Wait.untilElementIsVisible(cmbArriveAt, 120);
+        Wait.untilElementIsVisible(cmbArriveAt, Constants.TIME_WAIT);
         this.getDropDownArriveAt().selectByVisibleText(arriveAt);
     }
 
     public void selectSeatType(String seatType) {
-        Wait.untilElementIsVisible(cmbSeatType, 20);
+        Wait.untilElementIsVisible(cmbSeatType, Constants.TIME_WAIT);
         this.getDropDownSeatType().selectByVisibleText(seatType);
     }
 
     public void selectTicketAmount(String ticketAmount) {
-        Wait.untilElementIsVisible(cmbTicketAmount, 20);
+        Wait.untilElementIsVisible(cmbTicketAmount, Constants.TIME_WAIT);
         this.getDropDownTicketAmount().selectByVisibleText(ticketAmount);
     }
 

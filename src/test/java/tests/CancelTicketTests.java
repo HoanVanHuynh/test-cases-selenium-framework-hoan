@@ -4,6 +4,7 @@ import common.Account;
 import common.Ticket;
 import helpers.DataHelper;
 import helpers.DateHelper;
+import helpers.DriverHelper;
 import helpers.LogHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -82,7 +83,7 @@ public class CancelTicketTests extends BaseTest {
         myTicketPage.clickMyTicketTab();
 
         LogHelper.info("Get current number of booked tickets before cancelling any ticket");
-        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNoteWithMoreThan1Ticket(2, 10);
+        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNote(2, 10);
         String expectedBeforeCancellingResult = "You currently book 2 tickets, you can book 8 more.";
 
         LogHelper.info("Verify that number of tickets displays correctly before cancelling any ticket");
@@ -92,10 +93,10 @@ public class CancelTicketTests extends BaseTest {
         myTicketPage.cancelTicket(departStation, arriveStation, departDate, ticketAmount);
 
         LogHelper.info("Click on OK button after alert displays correctly");
-        myTicketPage.clickOKButton();
+        DriverHelper.acceptAlert();
 
         LogHelper.info("Get number of remaining tickets after cancelling any ticket");
-        String actualAfterCancellingResult = myTicketPage.getCancelTicketNoteWith0Or1Ticket(0, 10);
+        String actualAfterCancellingResult = myTicketPage.getCancelTicketNote(0, 10);
         String expectedAfterCancellingResult = "You currently book 0 ticket, you can book 10 more.";
 
         LogHelper.info("Verify that the canceled ticket is disappeared.");

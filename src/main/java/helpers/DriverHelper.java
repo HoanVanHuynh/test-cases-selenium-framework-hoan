@@ -39,4 +39,9 @@ public class DriverHelper {
     public static Alert getAlert() {
         return driver.switchTo().alert();
     }
+
+    public static void acceptAlert() {
+        Wait.untilAlertIsPresent(Constants.TIME_WAIT);
+        getAlert().accept();
+    }
 }
