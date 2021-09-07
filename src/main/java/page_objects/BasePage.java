@@ -14,6 +14,7 @@ public class BasePage {
     private final By tabContact = By.cssSelector("a[href*='Contact']");
     private final By tabRegister = By.cssSelector("a[href*='Register']");
     private final By tabChangePassword = By.cssSelector("a[href*='ChangePassword']");
+    private final By tabMyTicket = By.cssSelector("a[href*='ManageTicket']");
 
     // Elements
     private WebElement getTabLogin() {
@@ -38,6 +39,10 @@ public class BasePage {
 
     private WebElement getTabChangePassword() {
         return DriverHelper.getDriver().findElement(tabChangePassword);
+    }
+
+    private WebElement getTabMyTicket() {
+        return DriverHelper.getDriver().findElement(tabMyTicket);
     }
 
     // Methods
@@ -71,5 +76,9 @@ public class BasePage {
 
     public void clickChangePasswordTab() {
         this.getTabChangePassword().click();
+    }
+
+    public void clickMyTicketTab() {
+        this.getTabMyTicket().click();
     }
 }

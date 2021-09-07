@@ -2,6 +2,7 @@ package helpers;
 
 import common.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -35,7 +36,7 @@ public class DriverHelper {
         return driver.getTitle();
     }
 
-    public static void clickOKButtonOfAlert() {
-        driver.switchTo().alert().accept();
+    public static Alert getAlert() {
+        return driver.switchTo().alert();
     }
 }
