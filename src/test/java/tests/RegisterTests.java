@@ -4,7 +4,7 @@ import common.Account;
 import helpers.DataHelper;
 import helpers.LogHelper;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page_objects.ChangePasswordPage;
 import page_objects.LoginPage;
@@ -20,7 +20,7 @@ public class RegisterTests extends BaseTest {
     private String password = "0123456789hochiminh";
     private String pid = DataHelper.getRandomDigits(10);
 
-    @BeforeTest
+    @BeforeMethod
     public void precondition() {
         LogHelper.info("Set all valid register information such as email: " + email + ", password: " + password + ", confirm password: " + password + ", pid: " + pid);
         account.setEmail(email);
