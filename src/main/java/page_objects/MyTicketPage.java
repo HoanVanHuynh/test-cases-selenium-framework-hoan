@@ -25,7 +25,7 @@ public class MyTicketPage extends BasePage {
         this.getCancelButton(departStation, arriveStation, departDate, ticketAmount).click();
     }
 
-    public String getCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
+    public WebElement getCancelTicketNote(int ticketAmount, int maximumTicketAmount) {
         int remainingTicketAmount = maximumTicketAmount - ticketAmount;
         String dynamicCancelTicketNote;
         if (ticketAmount > 1) {
@@ -34,6 +34,6 @@ public class MyTicketPage extends BasePage {
             dynamicCancelTicketNote = String.format(dynamicNoteWith0Or1Ticket, ticketAmount, remainingTicketAmount);
         }
         By note = By.xpath(dynamicCancelTicketNote);
-        return DriverHelper.getDriver().findElement(note).getText();
+        return DriverHelper.getDriver().findElement(note);
     }
 }

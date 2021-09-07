@@ -83,7 +83,7 @@ public class CancelTicketTests extends BaseTest {
         myTicketPage.clickMyTicketTab();
 
         LogHelper.info("Get current number of booked tickets before cancelling any ticket");
-        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNote(2, 10);
+        String actualBeforeCancellingResult = myTicketPage.getCancelTicketNote(2, 10).getText();
         String expectedBeforeCancellingResult = "You currently book 2 tickets, you can book 8 more.";
 
         LogHelper.info("Verify that number of tickets displays correctly before cancelling any ticket");
@@ -96,7 +96,7 @@ public class CancelTicketTests extends BaseTest {
         DriverHelper.acceptAlert();
 
         LogHelper.info("Get number of remaining tickets after cancelling any ticket");
-        String actualAfterCancellingResult = myTicketPage.getCancelTicketNote(0, 10);
+        String actualAfterCancellingResult = myTicketPage.getCancelTicketNote(0, 10).getText();
         String expectedAfterCancellingResult = "You currently book 0 ticket, you can book 10 more.";
 
         LogHelper.info("Verify that the canceled ticket is disappeared.");

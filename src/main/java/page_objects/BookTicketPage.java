@@ -9,8 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-
 public class BookTicketPage extends BasePage {
 
     // Locators
@@ -22,16 +20,18 @@ public class BookTicketPage extends BasePage {
     private final By btnBookTicket = By.cssSelector("input[type='submit']");
     private final By lblBookTicketMessage = By.cssSelector("div[id='content'] > h1");
     private final By lblBookTicketFormTitle = By.cssSelector("form[method='post'] fieldset legend");
-    private final By lblBookedTicketTable = By.cssSelector("table[class = 'MyTable WideTable' ] tbody");
+    private final String dynamicBookedTicketTable = "//table[@class='MyTable WideTable']/tbody//td[text()='%s']";
 
     // Elements
-    private WebElement getLblBookedTicketTable() {
-        return DriverHelper.getDriver().findElement(lblBookedTicketTable);
-    }
-
     private WebElement getLblBookTicketFormTitle() {
         Wait.untilElementIsVisible(lblBookTicketFormTitle, Constants.TIME_WAIT);
         return DriverHelper.getDriver().findElement(lblBookTicketFormTitle);
+    }
+
+    private WebElement getBookedTicketTable(String option) {
+        String bookedTicketTable = String.format(dynamicBookedTicketTable, option);
+        By table = By.xpath(bookedTicketTable);
+        return DriverHelper.getDriver().findElement(table);
     }
 
     private WebElement getBtnBookTicket() {
@@ -104,8 +104,7 @@ public class BookTicketPage extends BasePage {
     }
 
     public boolean isTheSameTicketInformationDisplayed(Ticket ticket) {
-        List<WebElement> row = getLblBookedTicketTable().findElements(By.tagName("td"));
-        if (row.get(0).getText().equals(ticket.getDepartFrom()) && row.get(1).getText().equals(ticket.getArriveAt()) && row.get(2).getText().equals(ticket.getSeatType()) && row.get(3).getText().equals(ticket.getDepartDate()) && row.get(6).getText().equals(ticket.getTicketAmount())) {
+        if (getBookedTicketTable(ticket.getDepartDate()).isDisplayed() && getBookedTicketTable(ticket.getDepartFrom()).isDisplayed() && getBookedTicketTable(ticket.getArriveAt()).isDisplayed()) {
             return true;
         }
         return false;
