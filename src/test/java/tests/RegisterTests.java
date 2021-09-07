@@ -69,17 +69,17 @@ public class RegisterTests extends BaseTest {
         changePasswordPage.changePassword(password, newPassword, confirmPassword);
 
         LogHelper.info("Get error message at the top of change password form ");
-        String actualPasswordError = changePasswordPage.getGeneralErrorMessage();
-        String expectedPasswordError = "Password change failed. Please correct the errors and try again.";
+        String actualFormErrorMsg = changePasswordPage.getGeneralErrorMessage();
+        String expectedFormErrorMsg = "Password change failed. Please correct the errors and try again.";
 
         LogHelper.info("Get error message next to confirm password field");
-        String actualConfirmPasswordError = changePasswordPage.getConfirmPasswordErrorMessage();
-        String expectedConfirmPasswordError = "The password confirmation does not match the new password.";
+        String actualConfirmPasswordErrorMsg = changePasswordPage.getConfirmPasswordErrorMessage();
+        String expectedConfirmPasswordErrorMsg = "The password confirmation does not match the new password.";
 
         LogHelper.info("Verify that user can not change password");
-        Assert.assertEquals(actualPasswordError, expectedPasswordError, "Change password error message is displayed incorrectly");
+        Assert.assertEquals(actualFormErrorMsg, expectedFormErrorMsg, "Change password error message is displayed incorrectly");
 
         LogHelper.info("Verify that error message displays correctly when using new password and confirm password are different");
-        Assert.assertEquals(actualConfirmPasswordError, expectedConfirmPasswordError, "Confirm password error message is displayed incorrectly");
+        Assert.assertEquals(actualConfirmPasswordErrorMsg, expectedConfirmPasswordErrorMsg, "Confirm password error message is displayed incorrectly");
     }
 }
