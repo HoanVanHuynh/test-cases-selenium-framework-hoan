@@ -17,7 +17,7 @@ public class RegisterTests extends BaseTest {
     private ChangePasswordPage changePasswordPage = new ChangePasswordPage();
     private LoginPage loginPage = new LoginPage();
     private String email = DataHelper.getRandomEmail();
-    private String password = DataHelper.getRandomPassword(10);
+    private String password = "0123456789hochiminh";
     private String pid = DataHelper.getRandomDigits(10);
 
     @BeforeTest
