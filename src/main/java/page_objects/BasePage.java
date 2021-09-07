@@ -12,7 +12,7 @@ public class BasePage {
     private final By tabBookTicket = By.cssSelector("a[href$='BookTicketPage.cshtml']");
     private final By tabLogout = By.cssSelector("a[href$='Logout']");
     private final By tabContact = By.cssSelector("a[href*='Contact']");
-    private final By tabRegister = By.cssSelector("li > a[href$='Register.cshtml']");
+    private final By tabRegister = By.cssSelector("a[href*='Register']");
     private final By tabChangePassword = By.cssSelector("a[href*='ChangePassword']");
 
     // Elements
