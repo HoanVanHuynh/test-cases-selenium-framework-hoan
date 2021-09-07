@@ -16,27 +16,31 @@ public class RegisterTests extends BaseTest {
     private RegisterPage registerPage = new RegisterPage();
     private ChangePasswordPage changePasswordPage = new ChangePasswordPage();
     private LoginPage loginPage = new LoginPage();
-    private String email = DataHelper.getRandomEmail();
-    private String password = "0123456789hochiminh";
-    private String pid = DataHelper.getRandomDigits(10);
+    private String email;
+    private String password;
+    private String pid;
 
     @BeforeMethod
     public void precondition() {
+        email = DataHelper.getRandomEmail();
+        pid = DataHelper.getRandomDigits(10);
+        password = "0123456789hochiminh";
+
         LogHelper.info("Set all valid register information such as email: " + email + ", password: " + password + ", confirm password: " + password + ", pid: " + pid);
         account.setEmail(email);
         account.setPassword(password);
         account.setConfirmPassword(password);
         account.setPid(pid);
-    }
 
-    @Test(description = "User can create new account")
-    public void tc07_RegisterWithValidInformation() {
         LogHelper.info("Click on Register tab");
         registerPage.clickRegisterTab();
 
         LogHelper.info("Register an account");
         registerPage.register(account);
+    }
 
+    @Test(description = "User can create new account")
+    public void tc07_RegisterWithValidInformation() {
         LogHelper.info("Get register success message");
         String actualResult = registerPage.getRegisterSuccessMessage();
         String expectedResult = "You're here";
@@ -47,12 +51,6 @@ public class RegisterTests extends BaseTest {
 
     @Test(description = "User can not change password when New Password and Confirm Password are different")
     public void tc09_UserCanNotChangePassword() {
-        LogHelper.info("Click on Register tab");
-        registerPage.clickRegisterTab();
-
-        LogHelper.info("Register an account");
-        registerPage.register(account);
-
         LogHelper.info("Click on Login tab");
         loginPage.clickLoginTab();
 
