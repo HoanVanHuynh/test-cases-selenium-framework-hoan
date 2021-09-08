@@ -1,59 +1,32 @@
 package page_objects;
 
-import helpers.DriverHelper;
-import helpers.ElementHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import com.logigear.control.common.imp.Button;
+import com.logigear.control.common.imp.Label;
+import com.logigear.control.common.imp.TextBox;
 
 public class ChangePasswordPage extends BasePage {
 
-    // Locators
-    private final By txtCurrentPassword = By.id("currentPassword");
-    private final By txtNewPassword = By.id("newPassword");
-    private final By txtConfirmPassword = By.id("confirmPassword");
-    private final By btnChangePassword = By.cssSelector("input[value='Change Password']");
-    private final By lblGeneralErrorMessage = By.cssSelector("p[class='message error']");
-    private final By lblConfirmPasswordErrorMessage = By.cssSelector("input#confirmPassword + label.validation-error");
-
-    // Elements
-    private WebElement getTxtCurrentPassword() {
-        return DriverHelper.getDriver().findElement(txtCurrentPassword);
-    }
-
-    private WebElement getTxtNewPassword() {
-        return DriverHelper.getDriver().findElement(txtNewPassword);
-    }
-
-    private WebElement getTxtConfirmPassword() {
-        return DriverHelper.getDriver().findElement(txtConfirmPassword);
-    }
-
-    private WebElement getBtnChangePassword() {
-        return DriverHelper.getDriver().findElement(btnChangePassword);
-    }
-
-    private WebElement getLblGeneralErrorMessage() {
-        return DriverHelper.getDriver().findElement(lblGeneralErrorMessage);
-    }
-
-    private WebElement getLblConfirmPasswordErrorMessage() {
-        return DriverHelper.getDriver().findElement(lblConfirmPasswordErrorMessage);
-    }
+    private final TextBox currentPassword = new TextBox("id=currentPassword");
+    private final TextBox newPassword = new TextBox("id=newPassword");
+    private final TextBox confirmPassword = new TextBox("id=confirmPassword");
+    private final Button changePasswordButton = new Button("css=input[value='Change Password']");
+    private final Label generalErrorMessage = new Label("css=p[class='message error']");
+    private final Label confirmPasswordErrorMessage = new Label("css=input#confirmPassword + label.validation-error");
 
     // Methods
-    public void changePassword(String currentPassword, String newPassword, String confirmPassword) {
-        ElementHelper.scrollTo(this.getTxtCurrentPassword());
-        this.getTxtCurrentPassword().sendKeys(currentPassword);
-        this.getTxtNewPassword().sendKeys(newPassword);
-        this.getTxtConfirmPassword().sendKeys(confirmPassword);
-        this.getBtnChangePassword().click();
+    public void changePassword(String ctp, String np, String cmp) {
+        currentPassword.scrollToView();
+        currentPassword.setValue(ctp);
+        newPassword.setValue(np);
+        confirmPassword.setValue(cmp);
+        changePasswordButton.click();
     }
 
     public String getGeneralErrorMessage() {
-        return this.getLblGeneralErrorMessage().getText();
+        return generalErrorMessage.getText();
     }
 
     public String getConfirmPasswordErrorMessage() {
-        return this.getLblConfirmPasswordErrorMessage().getText();
+        return confirmPasswordErrorMessage.getText();
     }
 }

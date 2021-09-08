@@ -1,60 +1,31 @@
 package page_objects;
 
+import com.logigear.control.common.imp.Button;
+import com.logigear.control.common.imp.Label;
+import com.logigear.control.common.imp.TextBox;
 import common.Account;
 import common.Constants;
-import helpers.DriverHelper;
-import helpers.ElementHelper;
-import helpers.Wait;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class RegisterPage extends BasePage {
 
-    // Locators
-    private final By txtEmail = By.id("email");
-    private final By txtPassword = By.id("password");
-    private final By txtConfirmPassword = By.id("confirmPassword");
-    private final By txtPid = By.id("pid");
-    private final By btnRegister = By.cssSelector("input[value='Register']");
-    private final By lblRegisterSuccessMessage = By.cssSelector("div#content p");
+    private final TextBox email = new TextBox("id=email");
+    private final TextBox password = new TextBox("id=password");
+    private final TextBox confirmPassword = new TextBox("id=confirmPassword");
+    private final TextBox pid = new TextBox("id=pid");
+    private final Button registerButton = new Button("css=input[value='Register']");
+    private final Label registerSuccessMessage = new Label("css=div#content p");
 
-    // Elements
-    private WebElement getTxtEmail() {
-        return DriverHelper.getDriver().findElement(txtEmail);
-    }
-
-    private WebElement getTxtPassword() {
-        return DriverHelper.getDriver().findElement(txtPassword);
-    }
-
-    private WebElement getTxtConfirmPassword() {
-        return DriverHelper.getDriver().findElement(txtConfirmPassword);
-    }
-
-    private WebElement getTxtPid() {
-        return DriverHelper.getDriver().findElement(txtPid);
-    }
-
-    private WebElement getBtnRegister() {
-        return DriverHelper.getDriver().findElement(btnRegister);
-    }
-
-    private WebElement getLblRegisterSuccessMessage() {
-        return DriverHelper.getDriver().findElement(lblRegisterSuccessMessage);
-    }
-
-    // Methods
     public void register(Account account) {
-        ElementHelper.scrollTo(this.getTxtEmail());
-        this.getTxtEmail().sendKeys(account.getEmail());
-        this.getTxtPassword().sendKeys(account.getPassword());
-        this.getTxtConfirmPassword().sendKeys(account.getConfirmPassword());
-        this.getTxtPid().sendKeys(account.getPid());
-        this.getBtnRegister().click();
+        email.scrollToView();
+        email.setValue(account.getEmail());
+        password.setValue(account.getPassword());
+        confirmPassword.setValue(account.getConfirmPassword());
+        pid.setValue(account.getPid());
+        registerButton.click();
     }
 
     public String getRegisterSuccessMessage() {
-        Wait.untilElementIsVisible(lblRegisterSuccessMessage, Constants.TIME_WAIT);
-        return this.getLblRegisterSuccessMessage().getText();
+        registerSuccessMessage.isExist(Constants.TIME_WAIT);
+        return registerSuccessMessage.getText();
     }
 }
