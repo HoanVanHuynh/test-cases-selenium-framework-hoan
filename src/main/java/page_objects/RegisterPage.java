@@ -4,7 +4,6 @@ import com.logigear.control.common.imp.Button;
 import com.logigear.control.common.imp.Label;
 import com.logigear.control.common.imp.TextBox;
 import common.Account;
-import common.Constants;
 
 public class RegisterPage extends BasePage {
 
@@ -25,7 +24,7 @@ public class RegisterPage extends BasePage {
     }
 
     public String getRegisterSuccessMessage() {
-        registerSuccessMessage.isExist(Constants.TIME_WAIT);
+        registerSuccessMessage.waitForVisibility();
         return registerSuccessMessage.getText();
     }
 }
