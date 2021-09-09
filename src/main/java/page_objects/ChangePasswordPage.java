@@ -14,11 +14,11 @@ public class ChangePasswordPage extends BasePage {
     private final Label confirmPasswordErrorMessage = new Label("css=input#confirmPassword + label.validation-error");
 
     // Methods
-    public void changePassword(String ctp, String np, String cmp) {
+    public void changePassword(String old, String fresh, String confirm) {
         currentPassword.scrollToView();
-        currentPassword.setValue(ctp);
-        newPassword.setValue(np);
-        confirmPassword.setValue(cmp);
+        currentPassword.setValue(old);
+        newPassword.setValue(fresh);
+        confirmPassword.setValue(confirm);
         changePasswordButton.click();
     }
 

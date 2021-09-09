@@ -3,7 +3,6 @@ package page_objects;
 import com.logigear.control.common.imp.Button;
 import com.logigear.control.common.imp.ComboBox;
 import com.logigear.control.common.imp.Label;
-import common.Constants;
 import common.Ticket;
 
 public class BookTicketPage extends BasePage {
@@ -19,27 +18,27 @@ public class BookTicketPage extends BasePage {
     private final Label dynamicBookedTicketTable = new Label("//table[@class='MyTable WideTable']/tbody//td[text()='%s']");
 
     public void selectDepartDate(String date) {
-        departDate.isVisible(Constants.TIME_WAIT);
+        departDate.waitForVisibility();
         departDate.select(date);
     }
 
     public void selectDepartStation(String from) {
-        departFrom.isVisible(Constants.TIME_WAIT);
+        departFrom.waitForVisibility();
         departFrom.select(from);
     }
 
     public void selectArriveStation(String arrive) {
-        arriveAt.isVisible(Constants.TIME_WAIT);
+        arriveAt.waitForVisibility();
         arriveAt.select(arrive);
     }
 
     public void selectSeatType(String seat) {
-        seatType.isVisible(Constants.TIME_WAIT);
+        seatType.waitForVisibility();
         seatType.select(seat);
     }
 
     public void selectTicketAmount(String amount) {
-        ticketAmount.isVisible(Constants.TIME_WAIT);
+        ticketAmount.waitForVisibility();
         ticketAmount.select(amount);
     }
 
