@@ -43,7 +43,7 @@ public class LoginTests extends BaseTest {
         loginPage.login("", Constants.PASSWORD);
 
         LogHelper.info("Get error message at top of login form");
-        String actualMessage = loginPage.getErrorMessageAtTop();
+        String actualMessage = loginPage.getLoginErrorMessage();
         String expectedMessage = "There was a problem with your login and/or errors exist in your form.";
 
         LogHelper.info("Verify that error message at top of login form appears correctly after logging with bank username textbox");
@@ -65,7 +65,7 @@ public class LoginTests extends BaseTest {
         loginPage.login(Constants.USERNAME, invalidPassword);
 
         LogHelper.info("Get error message at top of login form");
-        String actualMessage = loginPage.getErrorMessageAtTop();
+        String actualMessage = loginPage.getLoginErrorMessage();
         String expectedMessage = "Invalid username or password. Please try again.";
 
         LogHelper.info("Verify that error message at top of login form appears correctly after logging with invalid password");
@@ -85,7 +85,7 @@ public class LoginTests extends BaseTest {
         bookTicketPage.clickBookTicketTab();
 
         LogHelper.info("Get topic content at the top of login page in the middle");
-        String actualContent = loginPage.getTopicContentAtTop();
+        String actualContent = loginPage.getTopicContent();
 
         LogHelper.info("Login with valid account");
         loginPage.login(Constants.USERNAME, Constants.PASSWORD);
@@ -108,7 +108,7 @@ public class LoginTests extends BaseTest {
         loginPage.loginMultipleTimes(4, Constants.USERNAME, invalidPassword);
 
         LogHelper.info("Get error message after logging in 4 times with invalid password");
-        String actualMessage = loginPage.getErrorMessageAtTop();
+        String actualMessage = loginPage.getLoginErrorMessage();
         String expectedMessage = "Invalid username or password. Please try again.";
 
         LogHelper.info("Verify that error message displays correctly after logging in 4 times with invalid password");
@@ -133,7 +133,7 @@ public class LoginTests extends BaseTest {
         boolean loginTabAppearance = loginPage.isLoginTabDisplayed();
 
         LogHelper.info("Get welcome content at the top of Home page in the middle");
-        String actualContent = homePage.getWelcomeContentAtTop();
+        String actualContent = homePage.getWelcomeContent();
         String expectedContent = "Welcome to Safe Railway";
 
         LogHelper.info("Verify that Logout tab is displayed after logging in successfully.");

@@ -10,8 +10,8 @@ public class LoginPage extends BasePage {
     private final TextBox txtPassword = new TextBox("id=password");
     private final Button btnLogin = new Button("css=input[value='Login']");
     private final Label lblWelcomeMessage = new Label("css=div[class='account'] > strong");
-    private final Label lblErrorMessageAtTop = new Label("css=p[class='message error LoginForm']");
-    private final Label lblTopicContentAtTop = new Label("css=div#content h1");
+    private final Label lblLoginErrorMessage = new Label("css=p[class='message error LoginForm']");
+    private final Label lblTopicContent = new Label("css=div#content h1");
 
     // Methods
     public void login(String username, String password) {
@@ -25,12 +25,12 @@ public class LoginPage extends BasePage {
         return lblWelcomeMessage.getText();
     }
 
-    public String getErrorMessageAtTop() {
-        return lblErrorMessageAtTop.getText();
+    public String getLoginErrorMessage() {
+        return lblLoginErrorMessage.getText();
     }
 
-    public String getTopicContentAtTop() {
-        return lblTopicContentAtTop.getText();
+    public String getTopicContent() {
+        return lblTopicContent.getText();
     }
 
     public void loginMultipleTimes(int numberOfTimes, String username, String password) {
