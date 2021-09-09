@@ -17,7 +17,6 @@ public class BookTicketPage extends BasePage {
     private final Label bookTicketFormTitle = new Label("css=form[method='post'] fieldset legend");
     private final Label dynamicBookedTicketTable = new Label("//table[@class='MyTable WideTable']/tbody//td[text()='%s']/following-sibling::td[text()='%s']/following-sibling::td[text()='%s']//following-sibling::td[text()='%s']//following-sibling::td[text()='%s']");
 
-
     public void selectDepartDate(String date) {
         departDate.waitForVisibility();
         departDate.select(date);
