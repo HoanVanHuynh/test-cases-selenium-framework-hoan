@@ -33,8 +33,4 @@ public class DriverHelper {
     public static String getTitle() {
         return driver.getTitle();
     }
-
-    public static void acceptAlert() {
-        driver.switchTo().alert().accept();
-    }
 }
