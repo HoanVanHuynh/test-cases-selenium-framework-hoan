@@ -7,49 +7,49 @@ import common.Ticket;
 
 public class BookTicketPage extends BasePage {
 
-    private final ComboBox departDate = new ComboBox("css=select[name='Date']");
-    private final ComboBox departFrom = new ComboBox("css=select[name='DepartStation']");
-    private final ComboBox arriveAt = new ComboBox("css=select[name='ArriveStation']");
-    private final ComboBox seatType = new ComboBox("css=select[name='SeatType']");
-    private final ComboBox ticketAmount = new ComboBox("css=select[name='TicketAmount']");
-    private final Button bookTicketButton = new Button("css=input[type='submit']");
-    private final Label bookTicketMessage = new Label("css=div[id='content'] > h1");
-    private final Label bookTicketFormTitle = new Label("css=form[method='post'] fieldset legend");
+    private final ComboBox cmbDepartDate = new ComboBox("css=select[name='Date']");
+    private final ComboBox cmbDepartFrom = new ComboBox("css=select[name='DepartStation']");
+    private final ComboBox cmbArriveAt = new ComboBox("css=select[name='ArriveStation']");
+    private final ComboBox cmbSeatType = new ComboBox("css=select[name='SeatType']");
+    private final ComboBox cmbTicketAmount = new ComboBox("css=select[name='TicketAmount']");
+    private final Button btnBookTicket = new Button("css=input[type='submit']");
+    private final Label lblBookTicketMessage = new Label("css=div[id='content'] > h1");
+    private final Label lblBookTicketFormTitle = new Label("css=form[method='post'] fieldset legend");
     private final Label dynamicBookedTicketTable = new Label("//table[@class='MyTable WideTable']/tbody//td[text()='%s']/following-sibling::td[text()='%s']/following-sibling::td[text()='%s']//following-sibling::td[text()='%s']//following-sibling::td[text()='%s']");
 
     public void selectDepartDate(String date) {
-        departDate.waitForVisibility();
-        departDate.select(date);
+        cmbDepartDate.waitForVisibility();
+        cmbDepartDate.select(date);
     }
 
     public void selectDepartStation(String from) {
-        departFrom.waitForVisibility();
-        departFrom.select(from);
+        cmbDepartFrom.waitForVisibility();
+        cmbDepartFrom.select(from);
     }
 
     public void selectArriveStation(String arrive) {
-        arriveAt.waitForVisibility();
-        arriveAt.select(arrive);
+        cmbArriveAt.waitForVisibility();
+        cmbArriveAt.select(arrive);
     }
 
     public void selectSeatType(String seat) {
-        seatType.waitForVisibility();
-        seatType.select(seat);
+        cmbSeatType.waitForVisibility();
+        cmbSeatType.select(seat);
     }
 
     public void selectTicketAmount(String amount) {
-        ticketAmount.waitForVisibility();
-        ticketAmount.select(amount);
+        cmbTicketAmount.waitForVisibility();
+        cmbTicketAmount.select(amount);
     }
 
     public void bookTicket(Ticket ticket) {
-        bookTicketButton.scrollToView();
+        btnBookTicket.scrollToView();
         selectDepartDate(ticket.getDepartDate());
         selectDepartStation(ticket.getDepartFrom());
         selectArriveStation(ticket.getArriveAt());
         selectSeatType(ticket.getSeatType());
         selectTicketAmount(ticket.getTicketAmount());
-        bookTicketButton.click();
+        btnBookTicket.click();
     }
 
     public boolean isTheSameTicketInformationDisplayed(Ticket ticket) {
@@ -58,10 +58,10 @@ public class BookTicketPage extends BasePage {
     }
 
     public String getBookTicketMessage() {
-        return bookTicketMessage.getText();
+        return lblBookTicketMessage.getText();
     }
 
     public String getBookTicketFormTitle() {
-        return bookTicketFormTitle.getText();
+        return lblBookTicketFormTitle.getText();
     }
 }

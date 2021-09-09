@@ -1,52 +1,51 @@
 package page_objects;
 
 import com.logigear.control.common.imp.Link;
-import helpers.ElementHelper;
 
 public class BasePage {
 
-    private final Link loginTab = new Link("css=a[href$='Login.cshtml']");
-    private final Link bookTicketTab = new Link("css=a[href$='BookTicketPage.cshtml']");
-    private final Link logoutTab = new Link("css=a[href$='Logout']");
-    private final Link contactTab = new Link("css=a[href*='Contact']");
-    private final Link registerTab = new Link("css=a[href*='Register']");
-    private final Link changePasswordTab = new Link("css=a[href*='ChangePassword']");
-    private final Link myTicketTab = new Link("css=a[href*='ManageTicket']");
+    private final Link tabLogin = new Link("css=a[href$='Login.cshtml']");
+    private final Link tabBookTicket = new Link("css=a[href$='BookTicketPage.cshtml']");
+    private final Link tabLogout = new Link("css=a[href$='Logout']");
+    private final Link tabContact = new Link("css=a[href*='Contact']");
+    private final Link tabRegister = new Link("css=a[href*='Register']");
+    private final Link tabChangePassword = new Link("css=a[href*='ChangePassword']");
+    private final Link tabMyTicket = new Link("css=a[href*='ManageTicket']");
 
     // Methods
     public void clickLoginTab() {
-        loginTab.click();
+        tabLogin.click();
     }
 
     public void clickBookTicketTab() {
-        bookTicketTab.click();
+        tabBookTicket.click();
     }
 
     public void clickLogoutTab() {
-        logoutTab.click();
+        tabLogout.click();
     }
 
     public void clickContactTab() {
-        contactTab.click();
+        tabContact.click();
     }
 
     public boolean isLogoutTabDisplayed() {
-        return logoutTab.isExist();
+        return tabLogout.isExist();
     }
 
     public boolean isLoginTabDisplayed() {
-        return loginTab.isExist();
+        return tabLogin.isExist();
     }
 
     public void clickRegisterTab() {
-        registerTab.click();
+        tabRegister.click();
     }
 
     public void clickChangePasswordTab() {
-        changePasswordTab.click();
+        tabChangePassword.click();
     }
 
     public void clickMyTicketTab() {
-        myTicketTab.click();
+        tabMyTicket.click();
     }
 }

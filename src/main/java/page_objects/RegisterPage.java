@@ -7,24 +7,24 @@ import common.Account;
 
 public class RegisterPage extends BasePage {
 
-    private final TextBox email = new TextBox("id=email");
-    private final TextBox password = new TextBox("id=password");
-    private final TextBox confirmPassword = new TextBox("id=confirmPassword");
-    private final TextBox pid = new TextBox("id=pid");
-    private final Button registerButton = new Button("css=input[value='Register']");
-    private final Label registerSuccessMessage = new Label("css=div#content p");
+    private final TextBox txtEmail = new TextBox("id=email");
+    private final TextBox txtPassword = new TextBox("id=password");
+    private final TextBox txtConfirmPassword = new TextBox("id=confirmPassword");
+    private final TextBox txtPid = new TextBox("id=pid");
+    private final Button btnRegister = new Button("css=input[value='Register']");
+    private final Label lblRegisterSuccessMessage = new Label("css=div#content p");
 
     public void register(Account account) {
-        email.scrollToView();
-        email.setValue(account.getEmail());
-        password.setValue(account.getPassword());
-        confirmPassword.setValue(account.getConfirmPassword());
-        pid.setValue(account.getPid());
-        registerButton.click();
+        txtEmail.scrollToView();
+        txtEmail.setValue(account.getEmail());
+        txtPassword.setValue(account.getPassword());
+        txtConfirmPassword.setValue(account.getConfirmPassword());
+        txtPid.setValue(account.getPid());
+        btnRegister.click();
     }
 
     public String getRegisterSuccessMessage() {
-        registerSuccessMessage.waitForVisibility();
-        return registerSuccessMessage.getText();
+        lblRegisterSuccessMessage.waitForVisibility();
+        return lblRegisterSuccessMessage.getText();
     }
 }
