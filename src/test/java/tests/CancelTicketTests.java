@@ -58,6 +58,7 @@ public class CancelTicketTests extends BaseTest {
         String arriveStation = "Phan Thiết";
         String ticketAmount = "2";
         String seatType = "Hard seat";
+        String maximumTicketAmount = "10";
 
         LogHelper.info("Set all ticket information");
         ticket.setDepartDate(departDate);
@@ -87,7 +88,7 @@ public class CancelTicketTests extends BaseTest {
 
         LogHelper.info("Get current number of booked tickets before cancelling any ticket");
         String actualBeforeCancellingResult = myTicketPage.getManageTicketsNote();
-        String expectedBeforeCancellingResult = "You currently book 2 tickets, you can book 8 more.";
+        String expectedBeforeCancellingResult = myTicketPage.getCancellingTicketResult(ticketAmount, maximumTicketAmount);
 
         LogHelper.info("Verify that number of tickets displays correctly before cancelling any ticket");
         Assert.assertEquals(actualBeforeCancellingResult, expectedBeforeCancellingResult, "Cancel ticket note is displayed incorrectly");
@@ -100,7 +101,7 @@ public class CancelTicketTests extends BaseTest {
 
         LogHelper.info("Get number of remaining tickets after cancelling any ticket");
         String actualAfterCancellingResult = myTicketPage.getManageTicketsNote();
-        String expectedAfterCancellingResult = "You currently book 0 ticket, you can book 10 more.";
+        String expectedAfterCancellingResult = myTicketPage.getCancellingTicketResult("0", maximumTicketAmount);
 
         LogHelper.info("Verify that the canceled ticket is disappeared.");
         Assert.assertEquals(actualAfterCancellingResult, expectedAfterCancellingResult, "Cancel ticket note is displayed incorrectly");

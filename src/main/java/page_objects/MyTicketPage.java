@@ -16,4 +16,13 @@ public class MyTicketPage extends BasePage {
     public String getManageTicketsNote() {
         return manageTicketNote.getText();
     }
+
+    public String getCancellingTicketResult(String ticketAmount, String maximumAmount) {
+        int remainingAmount = Integer.valueOf(maximumAmount) - Integer.valueOf(ticketAmount);
+        if (Integer.valueOf(ticketAmount) > 1) {
+            return "You currently book " + ticketAmount + " tickets, you can book " + String.valueOf(remainingAmount) + " more.";
+        } else {
+            return "You currently book " + ticketAmount + " ticket, you can book " + String.valueOf(remainingAmount) + " more.";
+        }
+    }
 }
