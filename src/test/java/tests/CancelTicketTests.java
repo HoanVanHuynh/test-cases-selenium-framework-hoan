@@ -78,17 +78,14 @@ public class CancelTicketTests extends BaseTest {
         Assert.assertEquals(actualBookTicketSuccessMsg, expectedBookTicketSuccessMsg, "Message does not display correctly");
 
         LogHelper.info("Verify that ticket formation displays correctly after booking successfully such as depart station, arrive station, depart date and ticket amount");
-        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(departDate));
-        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(departStation));
-        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(arriveStation));
-        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(ticketAmount));
+        Assert.assertTrue(bookTicketPage.isTheSameTicketInformationDisplayed(ticket));
 
         LogHelper.info("Click on My ticket tab");
         myTicketPage.clickMyTicketTab();
 
         LogHelper.info("Get current number of booked tickets before cancelling any ticket");
         String actualBeforeCancellingResult = myTicketPage.getManageTicketsNote();
-        String expectedBeforeCancellingResult = myTicketPage.getCancellingTicketResult(ticketAmount, maximumTicketAmount);
+        String expectedBeforeCancellingResult = "You currently book " + ticketAmount + " tickets, you can book " + String.valueOf(Integer.valueOf(maximumTicketAmount) - Integer.valueOf(ticketAmount)) + " more.";
 
         LogHelper.info("Verify that number of tickets displays correctly before cancelling any ticket");
         Assert.assertEquals(actualBeforeCancellingResult, expectedBeforeCancellingResult, "Cancel ticket note is displayed incorrectly");
@@ -101,7 +98,7 @@ public class CancelTicketTests extends BaseTest {
 
         LogHelper.info("Get number of remaining tickets after cancelling any ticket");
         String actualAfterCancellingResult = myTicketPage.getManageTicketsNote();
-        String expectedAfterCancellingResult = myTicketPage.getCancellingTicketResult("0", maximumTicketAmount);
+        String expectedAfterCancellingResult = "You currently book 0 ticket, you can book " + maximumTicketAmount + " more.";
 
         LogHelper.info("Verify that the canceled ticket is disappeared.");
         Assert.assertEquals(actualAfterCancellingResult, expectedAfterCancellingResult, "Cancel ticket note is displayed incorrectly");

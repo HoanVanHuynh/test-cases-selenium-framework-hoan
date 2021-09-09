@@ -6,19 +6,19 @@ import com.logigear.control.common.imp.TextBox;
 
 public class LoginPage extends BasePage {
 
-    private final TextBox username = new TextBox("id=username");
-    private final TextBox password = new TextBox("id=password");
-    private final Button login = new Button("css=input[value='Login']");
+    private final TextBox usernameField = new TextBox("id=username");
+    private final TextBox passwordField = new TextBox("id=password");
+    private final Button loginButton = new Button("css=input[value='Login']");
     private final Label welcomeMessage = new Label("css=div[class='account'] > strong");
     private final Label errorMessageAtTop = new Label("css=p[class='message error LoginForm']");
     private final Label topicContentAtTop = new Label("css=div#content h1");
 
     // Methods
-    public void login(String user, String pass) {
-        username.scrollToView();
-        username.setValue(user);
-        password.setValue(pass);
-        login.click();
+    public void login(String username, String password) {
+        usernameField.scrollToView();
+        usernameField.enter(username);
+        passwordField.enter(password);
+        loginButton.click();
     }
 
     public String getWelcomeMessage() {

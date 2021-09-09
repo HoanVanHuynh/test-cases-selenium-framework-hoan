@@ -15,7 +15,7 @@ public class BookTicketPage extends BasePage {
     private final Button bookTicketButton = new Button("css=input[type='submit']");
     private final Label bookTicketMessage = new Label("css=div[id='content'] > h1");
     private final Label bookTicketFormTitle = new Label("css=form[method='post'] fieldset legend");
-    private final Label dynamicBookedTicketTable = new Label("//table[@class='MyTable WideTable']/tbody//td[text()='%s']");
+    private final Label dynamicBookedTicketTable = new Label("//table[@class='MyTable WideTable']/tbody//following-sibling::td[text()='%s']");
 
     public void selectDepartDate(String date) {
         departDate.waitForVisibility();
@@ -52,8 +52,11 @@ public class BookTicketPage extends BasePage {
         bookTicketButton.click();
     }
 
-    public boolean isTheSameTicketInformationDisplayed(String option) {
-        dynamicBookedTicketTable.setDynamicValue(option);
+    public boolean isTheSameTicketInformationDisplayed(Ticket ticket) {
+        dynamicBookedTicketTable.setDynamicValue(ticket.getDepartDate());
+        dynamicBookedTicketTable.setDynamicValue(ticket.getArriveAt());
+        dynamicBookedTicketTable.setDynamicValue(ticket.getDepartFrom());
+        dynamicBookedTicketTable.setDynamicValue(ticket.getTicketAmount());
         return dynamicBookedTicketTable.isExist();
     }
 
