@@ -3,9 +3,11 @@
 
 <suite name="All Test Suite">
     <test name="Tests in Chrome">
-
+        <parameter name="Browser" value="chrome.local"></parameter>
         <classes>
-
+            <class name="tests.LoginTests"></class>
+            <class name="tests.RegisterTests"></class>
+            <class name="tests.CancelTicketTests"></class>
         </classes>
 
     </test>
